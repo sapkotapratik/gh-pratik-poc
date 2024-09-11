@@ -40,6 +40,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '1.8'
+          distribution: 'zulu'
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
@@ -48,7 +49,7 @@ jobs:
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pratik_poc_test.apk
           path: app/build/outputs/apk/debug/app-debug.apk
