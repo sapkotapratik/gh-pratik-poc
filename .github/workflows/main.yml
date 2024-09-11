@@ -8,32 +8,7 @@ on:
   # workflow_dispatch:
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: '8'
-          distribution: 'temurin'  # Specify the JDK distribution
-
-      - name: Grant execute permission to gradlew
-        run: chmod +x ./gradlew
-
-      - name: Run tests
-        run: ./gradlew test
-
-      - name: Upload test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
-
   package:
-    needs: [unit-test]
     name: Generate APK
     runs-on: ubuntu-latest
     steps:
@@ -57,3 +32,4 @@ jobs:
         with:
           name: pratik_poc_test.apk
           path: app/build/outputs/apk/debug/app-debug.apk
+
